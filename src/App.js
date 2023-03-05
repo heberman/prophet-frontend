@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './Navbar';
+import Home from './Pages/Home';
+import Search from './Pages/Search';
+import ErrorPage from './Pages/ErrorPage';
+import Stats from './Pages/Stats';
+import StockPage from './Pages/StockPage';
+import LoginHandler from './LoginHandler';
+
+//alpha vantage api key:MG0ID5XPDBCTO9FF
 
 function App() {
+
+  const [user, setUser] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {user == null ? (<LoginHandler setUser={setUser}/>) : (
+            <div>
+              <Router>
+                <Navbar />
+                <div className="content">
+                  <Routes>
+                    <Route path="/" element={ <Home user={user} /> } />
+                    <Route path="/search" element={ <Search /> } />
+                    <Route path="/stats" element={ <Stats user={user}/> } />
+                    <Route path="/stock/:ticker" element={ <StockPage user={user}/>}/>
+                    <Route path="*" element={<ErrorPage />} />
+                  </Routes>
+                </div>
+              </Router>
+            </div>
+        )}
     </div>
   );
 }
