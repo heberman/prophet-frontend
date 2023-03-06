@@ -8,8 +8,6 @@ import ErrorPage from './Pages/ErrorPage';
 import Stats from './Pages/Stats';
 import StockPage from './Pages/StockPage';
 import LoginHandler from './LoginHandler';
-import axios from './api/axios';
-const schedule = require('node-schedule');
 
 //alpha vantage api key:MG0ID5XPDBCTO9FF
 
