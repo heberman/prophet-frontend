@@ -25,6 +25,7 @@ const useFetchPortfolioValue = (username) => {
                     const response = await axios.get('/price/' + ticker);
                     pval += shares * response.data.currPrice;
                 });
+                console.log(pval);
                 return pval;
             }
 
