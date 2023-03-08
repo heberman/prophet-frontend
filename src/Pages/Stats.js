@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import PortfolioValue from '../PortfolioValue';
+//import PortfolioValue from '../PortfolioValue';
 import TradesTable from '../TradesTable';
 import useFetchPortfolioValue from '../useFetchPortfolioValue';
-import useFetchUserData from '../useFetchUserData';
 const funcs = require('../StaticFunctions');
 
 const Stats = (props) => {
