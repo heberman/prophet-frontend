@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from './api/axios';
 import useFetchUserData from './useFetchUserData';
 
 const useFetchPortfolioValue = (username) => {
