@@ -177,7 +177,7 @@ const StockPage = (props) => {
                             </form>
                         </div>
                         <div className='chart'>
-                            <h4>{new Date(currDay.replaceAll("-", "/")).toLocaleString()}</h4>
+                            <h4>{new Date(currDay.replaceAll("-", "/")).toLocaleString() + " ET"}</h4>
                             <LineChart width={730} height={320} data={getChartData(dataState)} 
                                 margin={{ top: 0, right: 20, left: 0, bottom: 5 }}>
                                 <XAxis tickMargin={10} minTickGap={30} dataKey="time"/>
