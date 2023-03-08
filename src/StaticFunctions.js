@@ -22,4 +22,4 @@ function getDaysAgo(days) {
 
 exports.formatPrice = formatPrice;
 exports.convertShares = convertShares;
-exports.getDaysAgo(days);
+exports.getDaysAgo = getDaysAgo;
