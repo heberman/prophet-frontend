@@ -9,13 +9,13 @@ const useFetchStockData = (ticker, func, interval, outputsize, data_key) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log('here');
             const response = await axios.post('/data/' + ticker,
                 JSON.stringify({ func, interval, outputsize, data_key }),
                 {
                     headers: { 'Content-Type': 'application/json' }
                 }
             );
+            console.log(response);
             return response;
         }
 
