@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
-import useFetchStock from "./useFetchStock";
+import useFetchStockPrice from "./useFetchStockPrice";
 const funcs = require('./StaticFunctions');
 
 const StockPrice = (props) => {
     const ticker = props.ticker;
     const setTickerPrice = props.setTickerPrice;
-    const { currPrice } = useFetchStock(ticker, true);
+    const { currPrice } = useFetchStockPrice(ticker);
     const priceRef = useRef(0);
 
     useEffect(() => {
