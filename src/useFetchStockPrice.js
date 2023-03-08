@@ -12,7 +12,7 @@ const useFetchStockPrice = (ticker) => {
     useEffect(() => {
         try {
             const response = axios.get('/price/' + ticker);
-            console.log(response);
+            console.log(response.data);
             const data = response.data;
             setCurrPrice(data.currPrice);
             setCurrDay(data.currDay);
