@@ -15,13 +15,12 @@ const useFetchStockData = (ticker, func, interval, outputsize, data_key) => {
                     headers: { 'Content-Type': 'application/json' }
                 }
             );
-            console.log(response);
             return response;
         }
 
         fetchData()
             .then(result => {
-                const newData = result.data;
+                const newData = result.newData;
                 setData(newData);
                 setIsPending(false);
             })
