@@ -7,8 +7,6 @@ const Stats = (props) => {
     const username = props.user.user;
 
     const { userData, portVal: portfolioValue, isPending, error } = useFetchPortfolioValue(username);
-
-    //<PortfolioValue portfolioData={userData.portfolio} setPortfolioValue={setPortfolioValue}/>
     
     return (
         <div className="stats">
