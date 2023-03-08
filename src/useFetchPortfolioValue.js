@@ -39,7 +39,7 @@ const useFetchPortfolioValue = (username) => {
                     console.log(err);
                 })
         }
-    }, [userData, error]);
+    }, [userData, userError]);
 
     return ({ userData, portVal, isPending, error });
 }
