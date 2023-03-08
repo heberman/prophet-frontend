@@ -6,7 +6,7 @@ const funcs = require('../StaticFunctions');
 const Stats = (props) => {
     const username = props.user.user;
 
-    const { userData, poertVal: portfolioValue, isPending, error } = useFetchPortfolioValue(username);
+    const { userData, portVal: portfolioValue, isPending, error } = useFetchPortfolioValue(username);
 
     //<PortfolioValue portfolioData={userData.portfolio} setPortfolioValue={setPortfolioValue}/>
     
