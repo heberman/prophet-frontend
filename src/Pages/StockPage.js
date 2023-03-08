@@ -7,6 +7,7 @@ import useFetchShares from '../useFetchShares';
 import useFetchUserData from '../useFetchUserData';
 import useFetchCompany from '../useFetchCompany';
 import useFetchStockPrice from '../useFetchStockPrice';
+import useFetchStockData from '../useFetchStockData';
 const funcs = require('../StaticFunctions');
 
 const StockPage = (props) => {
@@ -17,7 +18,7 @@ const StockPage = (props) => {
     const { userData, cash, updateCash, trades, updateTrades } = useFetchUserData(username);
     const { shares, incrementShares } = useFetchShares(username, ticker);
     const { data: fiveMinuteData, isPending: stockIsPending, error: stockError } = 
-        useFetchStock(ticker, false, 'TIME_SERIES_INTRADAY', '5min', 'full', 'Time Series (5min)');
+        useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '5min', 'full', 'Time Series (5min)');
     const { data: thirtyMinuteData } = useFetchStock(ticker, false, 'TIME_SERIES_INTRADAY', '30min', 'full', 'Time Series (30min)');
     const { data: dailyData } = useFetchStock(ticker, false, 'TIME_SERIES_DAILY_ADJUSTED', null, 'full', 'Time Series (Daily)');
     const { currPrice, currDay, tradable, isPending: priceIsPending, error: priceError } = useFetchStockPrice(ticker);

@@ -1,26 +1,27 @@
 import { useEffect, useState } from 'react';
 import axios from './api/axios';
 
-const useFetchStockPrice = (ticker) => {
+const useFetchStockData = (ticker, func, interval, outputsize, data_key) => {
 
-    const [currPrice, setCurrPrice] = useState(null);
-    const [currDay, setCurrDay] = useState(null);
-    const [tradable, setTradable] = useState(null);
+    const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('/price/' + ticker);
+            const response = await axios.post('/data/' + ticker,
+                JSON.stringify({ func, interval, outputsize, data_key }),
+                {
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            );
             return response;
         }
 
         fetchData()
             .then(result => {
                 const data = result.data;
-                setCurrPrice(data.currPrice);
-                setCurrDay(data.currDay);
-                setTradable(data.tradable);
+                setData(data);
                 setIsPending(false);
             })
             .catch(err => {
@@ -30,7 +31,7 @@ const useFetchStockPrice = (ticker) => {
             });
     },[ticker])
 
-    return ( {currPrice, currDay, tradable, isPending, error} );
+    return ( {data, error} );
 }
  
-export default useFetchStockPrice;
+export default useFetchStockData;
