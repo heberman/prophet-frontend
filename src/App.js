@@ -8,6 +8,7 @@ import ErrorPage from './Pages/ErrorPage';
 import Stats from './Pages/Stats';
 import StockPage from './Pages/StockPage';
 import LoginHandler from './LoginHandler';
+import BotsPage from './Pages/BotsPage';
 
 //alpha vantage api key:MG0ID5XPDBCTO9FF
 
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/" element={ <Home user={user} /> } />
                     <Route path="/search" element={ <Search /> } />
                     <Route path="/stats" element={ <Stats user={user}/> } />
+                    <Route path="/bots" element={ <BotsPage /> } />
                     <Route path="/stock/:ticker" element={ <StockPage user={user}/>}/>
                     <Route path="*" element={<ErrorPage />} />
                   </Routes>

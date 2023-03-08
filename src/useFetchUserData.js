@@ -33,7 +33,6 @@ const useFetchUserData = (username) => {
 
         fetchAll().then( result => {
             if (result) {
-                console.log(result);
                 setUserData(result.foundUser);
                 setTrades(result.foundUser.trades);
                 setCash(result.foundUser.cash);
