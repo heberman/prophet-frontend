@@ -29,9 +29,9 @@ const useFetchStockData = (ticker, func, interval, outputsize, data_key) => {
                 setError(err.message);
                 console.log(err);
             });
-    },[ticker])
+    },[ticker, func, interval, outputsize, data_key])
 
-    return ( {data, error} );
+    return ( {data, isPending, error} );
 }
  
 export default useFetchStockData;
