@@ -19,8 +19,8 @@ const StockPage = (props) => {
     const { shares, incrementShares } = useFetchShares(username, ticker);
     const { data: fiveMinuteData, isPending: stockIsPending, error: stockError } = 
         useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '5min', 'full', 'Time Series (5min)');
-    const { data: thirtyMinuteData } = useFetchStock(ticker, false, 'TIME_SERIES_INTRADAY', '30min', 'full', 'Time Series (30min)');
-    const { data: dailyData } = useFetchStock(ticker, false, 'TIME_SERIES_DAILY_ADJUSTED', null, 'full', 'Time Series (Daily)');
+    const { data: thirtyMinuteData } = useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '30min', 'full', 'Time Series (30min)');
+    const { data: dailyData } = useFetchStockData(ticker, 'TIME_SERIES_DAILY_ADJUSTED', null, 'full', 'Time Series (Daily)');
     const { currPrice, currDay, tradable, isPending: priceIsPending, error: priceError } = useFetchStockPrice(ticker);
     const { companyName } = useFetchCompany(ticker);
 
