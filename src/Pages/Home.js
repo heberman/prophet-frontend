@@ -12,7 +12,7 @@ const Home = (props) => {
             <h2>Portfolio</h2>
             { error && <div>{ error }</div>}
             { isPending && <div>Loading...</div>}
-            { userData && portVal &&
+            { userData && portVal !== null &&
             <div>
                 <p>
                     <b>{"Spendable Cash: " + funcs.formatPrice(userData.cash)}</b><br/>

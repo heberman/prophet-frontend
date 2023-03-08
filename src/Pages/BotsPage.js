@@ -9,7 +9,7 @@ const BotsPage = () => {
         <div className="stats">
             { error && <div>{ error }</div>}
             { isPending && <div>Loading...</div>}
-            { userData && portVal && 
+            { userData && portVal !== null && 
             <div>
                 <h1>Randotron Stats</h1>
                 <h2>{"Total Value: " + funcs.formatPrice(userData.cash + portVal)}</h2>

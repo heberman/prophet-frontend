@@ -11,7 +11,7 @@ const Stats = (props) => {
         <div className="stats">
             { error && <div>{ error }</div>}
             { isPending && <div>Loading...</div>}
-            { userData && portVal && 
+            { userData && portVal !== null && 
             <div>
                 <h2>{"Total Value: " + funcs.formatPrice(userData.cash + portVal)}</h2>
                 <h2>{"Net Profit: " + funcs.formatPrice(userData.cash + portVal - 1000.0)}</h2>
