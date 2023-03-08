@@ -12,8 +12,8 @@ const BotsPage = () => {
             { userData && portVal !== null && 
             <div>
                 <h1>Randotron Stats</h1>
-                <h2>{"Total Value: " + funcs.formatPrice(userData.cash + portVal)}</h2>
-                <h2>{"Net Profit: " + funcs.formatPrice(userData.cash + portVal - 1000.0)}</h2>
+                <b>{"Total Value: " + funcs.formatPrice(userData.cash + portVal)}</b>
+                <b>{"Net Profit: " + funcs.formatPrice(userData.cash + portVal - 1000.0)}</b>
                 <h3>History</h3>
                 <TradesTable tradesData={userData.trades} />
             </div>}

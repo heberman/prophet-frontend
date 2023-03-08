@@ -186,7 +186,7 @@ const StockPage = (props) => {
                                     return [dataMin - x, dataMax + x];
                                 }} />
                                 <Tooltip />
-                                <Line type="linear" dot={false} dataKey="Value" stroke="#8884d8" animationDuration={1500}/>
+                                <Line type="linear" dot={false} dataKey="Value" stroke="#8884d8" animationDuration={1200}/>
                             </LineChart>
                         </div>
                         <div>
