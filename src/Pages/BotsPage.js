@@ -3,7 +3,7 @@ import useFetchUserData from '../useFetchUserData';
 const funcs = require('../StaticFunctions');
 
 const BotsPage = () => {
-    const { userData, portVal, isPending, error } = useFetchUserData("randoTron");
+    const { userData, portVal, isPending, error } = useFetchUserData("randotron");
     
     return (
         <div className="stats">
