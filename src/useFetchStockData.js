@@ -20,7 +20,7 @@ const useFetchStockData = (ticker, func, interval, outputsize, data_key) => {
 
         fetchData()
             .then(result => {
-                const newData = result.newData;
+                const newData = result['newData'];
                 console.log(newData);
                 setData(newData);
                 setIsPending(false);
