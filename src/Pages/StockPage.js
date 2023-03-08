@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
-import useFetchStock from '../useFetchStock';
 import useFetchShares from '../useFetchShares';
 import useFetchUserData from '../useFetchUserData';
 import useFetchCompany from '../useFetchCompany';
