@@ -74,7 +74,6 @@ const StockPage = (props) => {
     const getDailyChartData = () => {
         let i = 0;
         let dailyChartData = [];
-        console.log(fiveMinuteData);
         const times = Object.keys(fiveMinuteData);
 
         while (times[i].split(" ")[0] !== currDay.split(" ")[0])
