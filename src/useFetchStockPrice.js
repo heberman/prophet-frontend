@@ -16,18 +16,19 @@ const useFetchStockPrice = (ticker) => {
             return json;
         }
 
-        const result = fetchData()
+        fetchData()
+            .then(result => {
+                const data = result.data;
+                setCurrPrice(data.currPrice);
+                setCurrDay(data.currDay);
+                setTradable(data.tradable);
+                setIsPending(false);
+            })
             .catch(err => {
                 setIsPending(false);
                 setError(err.message);
                 console.log(err);
-            })
-
-        const data = result.data;
-        setCurrPrice(data.currPrice);
-        setCurrDay(data.currDay);
-        setTradable(data.tradable);
-        setIsPending(false);
+            });
     },[ticker])
 
     return ( {currPrice, currDay, tradable, isPending, error} );
