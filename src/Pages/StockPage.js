@@ -128,7 +128,7 @@ const StockPage = (props) => {
             { (stockError) && <h1>{ stockError }</h1> }
             { (priceError) && <h1>{ priceError }</h1> }
             { (stockIsPending || priceIsPending) && <div>Loading...</div>}
-            { fiveMinuteData && currPrice && currDay && companyName &&
+            { userData && fiveMinuteData && currPrice && currDay && companyName &&
             <div>
                 <div>
                     <h1>{ companyName + " - " + funcs.formatPrice(currPrice)}</h1>
