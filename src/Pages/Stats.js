@@ -12,11 +12,13 @@ const Stats = (props) => {
         <div className="stats">
             { error && <div>{ error }</div>}
             { isPending && <div>Loading...</div>}
-            { userData && portVal && <div>
+            { userData && portVal && 
+            <div>
                 <h2>{"Total Value: " + funcs.formatPrice(userData.cash + portVal)}</h2>
                 <h2>{"Net Profit: " + funcs.formatPrice(userData.cash + portVal - 1000.0)}</h2>
                 <h3>History</h3>
-                <TradesTable tradesData={userData.trades} /> </div>}
+                <TradesTable tradesData={userData.trades} />
+            </div>}
         </div>
     );
 }
