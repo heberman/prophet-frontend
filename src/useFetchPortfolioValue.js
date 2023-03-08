@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useFetchUserData from './useFetchUserData';
 
 const useFetchPortfolioValue = (username) => {
 
@@ -18,8 +19,8 @@ const useFetchPortfolioValue = (username) => {
         if (userData) {
             const fetchValue = async () => {
                 let pval = 0;
-                Object.keys(portfolio).forEach(async (ticker) => {
-                    const shares = portfolio[ticker];
+                Object.keys(userData.portfolio).forEach(async (ticker) => {
+                    const shares = userData.portfolio[ticker];
                     const response = await axios.get('/price/' + ticker);
                     pval += shares * response.data.currPrice;
                 });
