@@ -14,7 +14,7 @@ const StockPage = (props) => {
 
     const username = props.user.user;
 
-    const { userData, cash, updateCash, trades, updateTrades } = useFetchUserData(username);
+    const { userData, cash, updateCash, trades, updateTrades, isPending: userPending, error: userError } = useFetchUserData(username);
     const { shares, incrementShares } = useFetchShares(username, ticker);
     const { data: fiveMinuteData, isPending: stockIsPending, error: stockError } = 
         useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '5min', 'full', 'Time Series (5min)');
@@ -126,7 +126,8 @@ const StockPage = (props) => {
         <div className='stock'>
             { (stockError) && <h1>{ stockError }</h1> }
             { (priceError) && <h1>{ priceError }</h1> }
-            { (stockIsPending || priceIsPending) && <div>Loading...</div>}
+            { (userError) && <h1>{ userError }</h1> }
+            { (stockIsPending || priceIsPending || userPending) && <div>Loading...</div>}
             { userData && fiveMinuteData && currPrice && currDay && companyName &&
             <div>
                 <div>
