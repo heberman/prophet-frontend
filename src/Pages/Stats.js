@@ -1,12 +1,11 @@
-//import PortfolioValue from '../PortfolioValue';
 import TradesTable from '../TradesTable';
-import useFetchPortfolioValue from '../useFetchPortfolioValue';
+import useFetchUserData from '../useFetchUserData';
 const funcs = require('../StaticFunctions');
 
 const Stats = (props) => {
     const username = props.user.user;
 
-    const { userData, portVal, isPending, error } = useFetchPortfolioValue(username);
+    const { userData, portVal, isPending, error } = useFetchUserData(username);
     
     return (
         <div className="stats">
