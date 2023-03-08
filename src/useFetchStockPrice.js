@@ -12,8 +12,8 @@ const useFetchStockPrice = (ticker) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get('/price/' + ticker);
-            const json = await response.json();
-            return json;
+            console.log(response);
+            return response;
         }
 
         fetchData()
