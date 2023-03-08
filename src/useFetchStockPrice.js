@@ -10,19 +10,24 @@ const useFetchStockPrice = (ticker) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        try {
-            const response = axios.get('/price/' + ticker);
-            console.log(response.data);
-            const data = response.data;
-            setCurrPrice(data.currPrice);
-            setCurrDay(data.currDay);
-            setTradable(data.tradable);
-            setIsPending(false);
-        } catch (err) {
-            setIsPending(false);
-            setError(err.message);
-            console.log(err);
+        const fetchData = async () => {
+            const response = await axios.get('/price/' + ticker);
+            const json = await response.json();
+            return json;
         }
+
+        const result = fetchData()
+            .catch(err => {
+                setIsPending(false);
+                setError(err.message);
+                console.log(err);
+            })
+
+        const data = result.data;
+        setCurrPrice(data.currPrice);
+        setCurrDay(data.currDay);
+        setTradable(data.tradable);
+        setIsPending(false);
     },[ticker])
 
     return ( {currPrice, currDay, tradable, isPending, error} );
