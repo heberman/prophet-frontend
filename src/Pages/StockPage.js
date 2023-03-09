@@ -198,6 +198,10 @@ const StockPage = (props) => {
                         </div>
                     </div>
                 </div>
+                {trades.filter(t => t.ticker === ticker).length > 0 && 
+                <h3>{"Average Price: " + 
+                    formatPrice(trades.filter(t => t.ticker === ticker)
+                        .reduce((t1, t2) => t1.price + t2.price) / trades.filter(t => t.ticker === ticker).length)}</h3>}
                 <div className='ticker_history'>
                     <h3><u>{ticker + " History"}</u></h3>
                     {trades.filter(t => t.ticker === ticker).length === 0 ? <b>No trades made.</b> : 
