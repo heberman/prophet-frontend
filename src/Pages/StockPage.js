@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
-import useFetchShares from '../useFetchShares';
 import useFetchUserData from '../useFetchUserData';
 import useFetchCompany from '../useFetchCompany';
 import useFetchStockPrice from '../useFetchStockPrice';
@@ -14,8 +13,7 @@ const StockPage = (props) => {
 
     const username = props.user.user;
 
-    const { userData, cash, updateCash, trades, updateTrades, isPending: userPending, error: userError } = useFetchUserData(username);
-    const { shares, incrementShares } = useFetchShares(username, ticker);
+    const { userData, portfolio, updatePortfolio, cash, updateCash, trades, updateTrades, isPending: userPending, error: userError } = useFetchUserData(username);
     const { data: fiveMinuteData, isPending: stockIsPending, error: stockError } = 
         useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '5min', 'full', 'Time Series (5min)');
     const { data: thirtyMinuteData } = useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '30min', 'full', 'Time Series (30min)');
@@ -29,11 +27,11 @@ const StockPage = (props) => {
     const [avgPrice, setAvgPrice] = useState("");
 
     useEffect(() => {
-        if (trades && shares) {
-            console.log(trades, shares);
+        if (trades && portfolio) {
+            console.log(trades, portfolio);
             const filteredTrades = trades.filter(t => t.ticker === ticker && t.numShares > 0);
             //const sharesPurchased = filteredTrades.reduce((t1, t2) => t1.numShares + t2.numShares);
-            const newAvgPrice = filteredTrades.reduce((t1, t2) => t1.price * t1.numShares + t2.price * t2.numShares) / shares;
+            const newAvgPrice = filteredTrades.reduce((t1, t2) => t1.price * t1.numShares + t2.price * t2.numShares) / portfolio[ticker];
             console.log(newAvgPrice);
             setAvgPrice(formatPrice(newAvgPrice));
         }
@@ -60,7 +58,7 @@ const StockPage = (props) => {
             }
             newUser.cash -= num_shares * currPrice;
             const response = await axios.put('/user/' + userData.user, newUser);
-            incrementShares(num_shares);
+            updatePortfolio(ticker, num_shares);
             updateTrades(newUser.trades);
             updateCash(newUser.cash);
             return response;
@@ -150,7 +148,7 @@ const StockPage = (props) => {
                             <h3><u>{"Trade " + ticker}</u></h3>
                             <p>
                                 <b>{"Cash: " + formatPrice(cash)}</b><br/>
-                                <b>{"Shares Owned: " + shares}</b><br/>
+                                <b>{"Shares Owned: " + portfolio[ticker]}</b><br/>
                                 <b>{"Tradable: " + tradable}</b>
                             </p>
                             <form onSubmit={(e) => tradeShares(e, parseInt(sharesToBuy))}>
@@ -184,7 +182,7 @@ const StockPage = (props) => {
                                 <button 
                                     className="normal-button"
                                     type="submit"
-                                    disabled={ !tradable || sharesToSell === '' || shares <= 0 || shares < parseInt(sharesToSell) }>
+                                    disabled={ !tradable || sharesToSell === '' || portfolio[ticker] <= 0 || portfolio[ticker] < parseInt(sharesToSell) }>
                                     Sell
                                 </button>
                             </form>

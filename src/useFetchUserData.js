@@ -3,6 +3,7 @@ import axios from './api/axios';
 
 const useFetchUserData = (username) => {
     const [userData, setUserData] = useState(null);
+    const [portfolio, setPorfolio] = useState(null);
     const [priceMap, setPriceMap] = useState(null);
     const [portVal, setPortVal] = useState(null);
     const [trades, setTrades] = useState(null);
@@ -16,6 +17,12 @@ const useFetchUserData = (username) => {
 
     const updateCash = (newCash) => {
         setCash(newCash);
+    }
+
+    const updatePortfolio = (ticker, shares) => {
+        let newPortfolio = portfolio;
+        newPortfolio[ticker] += shares;
+        setPorfolio(newPortfolio);
     }
 
     useEffect(() => {
@@ -45,7 +52,7 @@ const useFetchUserData = (username) => {
         });
     }, [username]);
 
-    return { userData, priceMap, portVal, cash, updateCash, trades, updateTrades, isPending, error };
+    return { userData, priceMap, portVal, portfolio, updatePortfolio, cash, updateCash, trades, updateTrades, isPending, error };
 }
  
 export default useFetchUserData;
