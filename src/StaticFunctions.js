@@ -1,7 +1,7 @@
 
 function formatPrice(val) {
     console.log(val);
-    return val.toLocaleString("en-US", { style: 'currency', currency: "USD", currencyDisplay: "narrowSymbol"});
+    return Number(val).toLocaleString("en-US", { style: 'currency', currency: "USD", currencyDisplay: "narrowSymbol"});
 }
 
 function convertShares(numShares) {
