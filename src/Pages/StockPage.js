@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
@@ -26,6 +26,13 @@ const StockPage = (props) => {
     const [sharesToBuy, setSharesToBuy] = useState("");
     const [sharesToSell, setSharesToSell] = useState("");
     const [dataState, setDataState] = useState(0);
+    const [avgPrice, setAvgPrice] = useState(0);
+
+    useEffect(() => {
+        const filteredTrades = trades.filter(t => t.ticker === ticker);
+        setAvgPrice(filteredTrades.reduce((t1, t2) => t1.price + t2.price) / filteredTrades.length);
+    }, [trades]);
+
 
     async function tradeShares(e, num_shares) {
         e.preventDefault();
@@ -199,9 +206,7 @@ const StockPage = (props) => {
                     </div>
                 </div>
                 {trades.filter(t => t.ticker === ticker).length > 0 && 
-                <h3>{"Average Price: " + 
-                    formatPrice(trades.filter(t => t.ticker === ticker)
-                        .reduce((t1, t2) => t1.price + t2.price) / trades.filter(t => t.ticker === ticker).length)}</h3>}
+                <h3>{"Average Price: " + avgPrice}</h3>}
                 <div className='ticker_history'>
                     <h3><u>{ticker + " History"}</u></h3>
                     {trades.filter(t => t.ticker === ticker).length === 0 ? <b>No trades made.</b> : 
