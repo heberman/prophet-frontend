@@ -1,5 +1,6 @@
 
 function formatPrice(val) {
+    console.log(val);
     return val.toLocaleString("en-US", { style: 'currency', currency: "USD", currencyDisplay: "narrowSymbol"});
 }
 
