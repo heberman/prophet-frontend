@@ -7,7 +7,7 @@ import useFetchUserData from '../useFetchUserData';
 import useFetchCompany from '../useFetchCompany';
 import useFetchStockPrice from '../useFetchStockPrice';
 import useFetchStockData from '../useFetchStockData';
-const funcs = require('../StaticFunctions');
+import { convertShares, formatPrice, getDaysAgo } from '../StaticFunctions';
 
 const StockPage = (props) => {
     let { ticker } = useParams();
@@ -60,13 +60,13 @@ const StockPage = (props) => {
 
     const getChartData = (chart_index) => {
         if (chart_index === 1) {
-            return getOtherChartData(thirtyMinuteData, funcs.getDaysAgo(8));
+            return getOtherChartData(thirtyMinuteData, getDaysAgo(8));
         } else if (chart_index === 2) {
-            return getOtherChartData(thirtyMinuteData, funcs.getDaysAgo(31));
+            return getOtherChartData(thirtyMinuteData, getDaysAgo(31));
         } else if (chart_index === 3) {
-            return getOtherChartData(dailyData, funcs.getDaysAgo(91), 'day');
+            return getOtherChartData(dailyData, getDaysAgo(91), 'day');
         } else if (chart_index === 4) {
-            return getOtherChartData(dailyData, funcs.getDaysAgo(366), 'day');
+            return getOtherChartData(dailyData, getDaysAgo(366), 'day');
         }
         return getDailyChartData();
     }
@@ -131,12 +131,12 @@ const StockPage = (props) => {
             { userData && fiveMinuteData && currPrice && currDay && companyName &&
             <div>
                 <div>
-                    <h1>{ companyName + " - " + funcs.formatPrice(currPrice)}</h1>
+                    <h1>{ companyName + " - " + formatPrice(currPrice)}</h1>
                     <div className='stock_content'>
                         <div className='sidebar'>
                             <h3><u>{"Trade " + ticker}</u></h3>
                             <p>
-                                <b>{"Cash: " + funcs.formatPrice(cash)}</b><br/>
+                                <b>{"Cash: " + formatPrice(cash)}</b><br/>
                                 <b>{"Shares Owned: " + shares}</b><br/>
                                 <b>{"Tradable: " + tradable}</b>
                             </p>
@@ -215,8 +215,8 @@ const StockPage = (props) => {
                                     return (
                                         <tr key={index}>
                                             <td>{trade.ticker}</td>
-                                            <td>{funcs.convertShares(trade.numShares)}</td>
-                                            <td>{funcs.formatPrice(trade.price)}</td>
+                                            <td>{convertShares(trade.numShares)}</td>
+                                            <td>{formatPrice(trade.price)}</td>
                                             <td>{new Date(trade.date).toLocaleString()}</td>
                                         </tr>
                                     );

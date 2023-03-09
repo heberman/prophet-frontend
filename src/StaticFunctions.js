@@ -1,17 +1,17 @@
 
-function formatPrice(val) {
+export function formatPrice(val) {
     console.log(val);
     return Number(val).toLocaleString("en-US", { style: 'currency', currency: "USD", currencyDisplay: "narrowSymbol"});
 }
 
-function convertShares(numShares) {
+export function convertShares(numShares) {
     if (numShares >= 0)
         return "BUY " + numShares;
     
     return "SELL " + numShares*-1;
 }
 
-function getDaysAgo(days) {
+export function getDaysAgo(days) {
     const now = new Date();
     const timezoneOffset = now.getTimezoneOffset() * 60 * 1000; // Convert timezone offset to milliseconds
     const easternTimezoneOffset = -5 * 60 * 60 * 1000; // Eastern Timezone is UTC-4
@@ -21,7 +21,7 @@ function getDaysAgo(days) {
     return daysAgo;
 }
 
-function formatValueData(valueData) {
+export function formatValueData(valueData) {
     let data = []
     valueData.forEach(entry => {
         const newEntry = {
@@ -32,8 +32,3 @@ function formatValueData(valueData) {
     });
     return data;
 }
-
-exports.formatPrice = formatPrice;
-exports.convertShares = convertShares;
-exports.getDaysAgo = getDaysAgo;
-exports.formatValueData = formatValueData;

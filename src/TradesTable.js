@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const funcs = require('./StaticFunctions');
+import { convertShares, formatPrice } from './StaticFunctions';
 
 const TradesTable = (props) => {
     const TableHeader = () => {
@@ -22,8 +22,8 @@ const TradesTable = (props) => {
             return (
                 <tr key={index}>
                     <td className="stock-link"><Link to={'/stock/' + trade.ticker}>{trade.ticker}</Link></td>
-                    <td>{funcs.convertShares(trade.numShares)}</td>
-                    <td>{funcs.formatPrice(trade.price)}</td>
+                    <td>{convertShares(trade.numShares)}</td>
+                    <td>{formatPrice(trade.price)}</td>
                     <td>{new Date(trade.date).toLocaleString()}</td>
                 </tr>
             );

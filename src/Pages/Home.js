@@ -1,6 +1,6 @@
 import PortfolioTable from "../PortfolioTable";
 import useFetchUserData from "../useFetchUserData";
-const funcs = require('../StaticFunctions');
+import { formatPrice } from "../StaticFunctions";
 
 const Home = (props) => {
 
@@ -15,8 +15,8 @@ const Home = (props) => {
             { userData && portVal !== null &&
             <div>
                 <p>
-                    <b>{"Spendable Cash: " + funcs.formatPrice(userData.cash)}</b><br/>
-                    <b>{"Portfolio Value: " + funcs.formatPrice(portVal)}</b>
+                    <b>{"Spendable Cash: " + formatPrice(userData.cash)}</b><br/>
+                    <b>{"Portfolio Value: " + formatPrice(portVal)}</b>
                 </p>
                 <PortfolioTable username={username} portfolioData={userData.portfolio} priceMap={priceMap} /> 
             </div>}

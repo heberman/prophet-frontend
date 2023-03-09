@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import funcs from './StaticFunctions';
-
+import { formatPrice } from './StaticFunctions';
 const PortfolioTable = (props) => {
    
     const TableBody = () => {
@@ -13,7 +12,7 @@ const PortfolioTable = (props) => {
                 <tr key={index}>
                     <td className="stock-link"><Link to={'/stock/' + ticker}>{ticker}</Link></td>
                     <td>{props.portfolioData[ticker] + " shares"}</td>
-                    <td>{funcs.formatPrice(priceMap[ticker])}</td>
+                    <td>{formatPrice(priceMap[ticker])}</td>
                 </tr>
             );
         });

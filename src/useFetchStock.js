@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-const funcs = require('./StaticFunctions');
+import { getDaysAgo } from './StaticFunctions';
 
 const useFetchStock = (ticker, getPrice, func='TIME_SERIES_INTRADAY', interval='1min', 
                         outputsize='full', data_key='Time Series (1min)') => {
@@ -32,7 +32,7 @@ const useFetchStock = (ticker, getPrice, func='TIME_SERIES_INTRADAY', interval='
                     throw Error("Ticker '" + ticker + "' does not exist.");
                 const newData = data[data_key];
                 if (getPrice) {
-                    const yesterdayMS = funcs.getDaysAgo(1);
+                    const yesterdayMS = getDaysAgo(1);
                     const times = Object.keys(newData);
                     
                     let i = 0;
