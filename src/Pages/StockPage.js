@@ -31,7 +31,7 @@ const StockPage = (props) => {
     useEffect(() => {
         const filteredTrades = trades.filter(t => t.ticker === ticker);
         setAvgPrice(formatPrice(filteredTrades.reduce((t1, t2) => t1.price + t2.price) / filteredTrades.length));
-    }, [trades]);
+    }, [ticker, trades]);
 
 
     async function tradeShares(e, num_shares) {
