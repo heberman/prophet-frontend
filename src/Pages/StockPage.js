@@ -56,7 +56,6 @@ const StockPage = (props) => {
             }
             newUser.cash -= num_shares * currPrice;
             const response = await axios.put('/user/' + userData.user, newUser);
-            updatePortfolio(ticker, num_shares);
             updateTrades(newUser.trades);
             updateCash(newUser.cash);
             return response;

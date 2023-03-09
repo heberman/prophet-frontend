@@ -19,13 +19,6 @@ const useFetchUserData = (username) => {
         setCash(newCash);
     }
 
-    const updatePortfolio = (ticker, shares) => {
-        console.log(shares);
-        let newPortfolio = portfolio;
-        newPortfolio[ticker] = newPortfolio[ticker] + shares;
-        setPorfolio(newPortfolio);
-    }
-
     useEffect(() => {
         const fetchAll = async () => {
             try {
@@ -54,7 +47,7 @@ const useFetchUserData = (username) => {
         });
     }, [username]);
 
-    return { userData, priceMap, portVal, portfolio, updatePortfolio, cash, updateCash, trades, updateTrades, isPending, error };
+    return { userData, priceMap, portVal, portfolio, cash, updateCash, trades, updateTrades, isPending, error };
 }
  
 export default useFetchUserData;
