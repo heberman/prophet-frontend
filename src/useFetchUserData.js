@@ -3,6 +3,7 @@ import axios from './api/axios';
 
 const useFetchUserData = (username) => {
     const [userData, setUserData] = useState(null);
+    const [priceMap, setPriceMap] = useState(null);
     const [portVal, setPortVal] = useState(null);
     const [trades, setTrades] = useState(null);
     const [cash, setCash] = useState(null);
@@ -38,12 +39,13 @@ const useFetchUserData = (username) => {
                 setTrades(result.foundUser.trades);
                 setCash(result.foundUser.cash);
                 setPortVal(result.portVal);
+                setPriceMap(result.priceMap);
                 setIsPending(false);
             }
         });
     }, [username]);
 
-    return { userData, portVal, cash, updateCash, trades, updateTrades, isPending, error };
+    return { userData, priceMap, portVal, cash, updateCash, trades, updateTrades, isPending, error };
 }
  
 export default useFetchUserData;

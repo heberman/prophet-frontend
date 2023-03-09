@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import StockPrice from './StockPrice';
+import funcs from './StaticFunctions';
 
 const PortfolioTable = (props) => {
    
     const TableBody = () => {
         const tickers = Object.keys(props.portfolioData);
+        const priceMap = props.priceMap;
 
         const rows = tickers.map((ticker, index) => {
             return (
                 <tr key={index}>
                     <td className="stock-link"><Link to={'/stock/' + ticker}>{ticker}</Link></td>
-                    <td>{props.portfolioData[ticker] + " shares"}</td>
-                    <td><StockPrice ticker={ticker} /></td>
+                    <td>{props.portfolioData.get(ticker) + " shares"}</td>
+                    <td>{funcs.formatPrice(priceMap.get(ticker))}</td>
                 </tr>
             );
         });

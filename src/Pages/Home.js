@@ -5,7 +5,7 @@ const funcs = require('../StaticFunctions');
 const Home = (props) => {
 
     const username = props.user.user;
-    const { userData, portVal, isPending, error } = useFetchUserData(username);
+    const { userData, priceMap, portVal, isPending, error } = useFetchUserData(username);
 
     return (
         <div className="home">
@@ -18,7 +18,7 @@ const Home = (props) => {
                     <b>{"Spendable Cash: " + funcs.formatPrice(userData.cash)}</b><br/>
                     <b>{"Portfolio Value: " + funcs.formatPrice(portVal)}</b>
                 </p>
-                <PortfolioTable username={username} portfolioData={userData.portfolio} /> 
+                <PortfolioTable username={username} portfolioData={userData.portfolio} priceMap={priceMap} /> 
             </div>}
         </div>
     );
