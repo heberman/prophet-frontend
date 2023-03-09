@@ -21,6 +21,19 @@ function getDaysAgo(days) {
     return daysAgo;
 }
 
+const formatValueData = (valueData) => {
+    let data = []
+    valueData.forEach(entry => {
+        const newEntry = {
+            time: new Date(entry.date).toLocaleString(),
+            Value: entry.totalValue 
+        }
+        data = [newEntry, ...data];
+    });
+    return data;
+}
+
 exports.formatPrice = formatPrice;
 exports.convertShares = convertShares;
 exports.getDaysAgo = getDaysAgo;
+exports.formatValueData = formatValueData;
