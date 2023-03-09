@@ -1,6 +1,7 @@
 
 function formatPrice(val) {
-    return "$" + (Math.round(val * 100) / 100).toFixed(2).toLocaleString("en-US");
+    return val.toLocaleString("en-US", { style: 'currency', currency: "USD", currencyDisplay: "narrowSymbol"});
+    //return "$" + (Math.round(val * 100) / 100).toFixed(2).toLocaleString("en-US");
 }
 
 function convertShares(numShares) {
