@@ -1,4 +1,5 @@
 import TradesTable from '../TradesTable';
+import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
 import useFetchUserData from '../useFetchUserData';
 const funcs = require('../StaticFunctions');
 
