@@ -29,17 +29,14 @@ const StockPage = (props) => {
     useEffect(() => {
         if (trades && portfolio) {
             const filteredTrades = trades.filter(t => t.ticker === ticker && t.numShares > 0);
-            console.log(portfolio[ticker]);
             const sharesPurchased = filteredTrades.reduce((total, t) => total + t.numShares, 0);
             const newAvgPrice = filteredTrades.reduce((total, t) => total + t.price * t.numShares, 0) / sharesPurchased;
-            console.log(newAvgPrice);
             setAvgPrice(formatPrice(newAvgPrice));
         }
     }, [ticker, trades, portfolio]);
 
 
     async function tradeShares(e, num_shares) {
-        console.log(num_shares);
         e.preventDefault();
         setSharesToBuy("");
         setSharesToSell("");
