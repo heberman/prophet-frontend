@@ -12,7 +12,7 @@ const Stats = (props) => {
         let data = []
         valueData.forEach(entry => {
             const newEntry = {
-                time: new Date(entry.date).toLocaleTimeString(),
+                time: new Date(entry.date).toLocaleString(),
                 Value: entry.totalValue 
             }
             data = [newEntry, ...data];
