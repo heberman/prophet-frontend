@@ -26,11 +26,11 @@ const StockPage = (props) => {
     const [sharesToBuy, setSharesToBuy] = useState("");
     const [sharesToSell, setSharesToSell] = useState("");
     const [dataState, setDataState] = useState(0);
-    const [avgPrice, setAvgPrice] = useState(0);
+    const [avgPrice, setAvgPrice] = useState("");
 
     useEffect(() => {
         const filteredTrades = trades.filter(t => t.ticker === ticker);
-        setAvgPrice(filteredTrades.reduce((t1, t2) => t1.price + t2.price) / filteredTrades.length);
+        setAvgPrice(formatPrice(filteredTrades.reduce((t1, t2) => t1.price + t2.price) / filteredTrades.length));
     }, [trades]);
 
 
