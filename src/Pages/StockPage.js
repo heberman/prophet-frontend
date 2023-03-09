@@ -13,7 +13,7 @@ const StockPage = (props) => {
 
     const username = props.user.user;
 
-    const { userData, portfolio, updatePortfolio, cash, updateCash, trades, updateTrades, isPending: userPending, error: userError } = useFetchUserData(username);
+    const { userData, portfolio, cash, updateCash, trades, updateTrades, isPending: userPending, error: userError } = useFetchUserData(username);
     const { data: fiveMinuteData, isPending: stockIsPending, error: stockError } = 
         useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '5min', 'full', 'Time Series (5min)');
     const { data: thirtyMinuteData } = useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '30min', 'full', 'Time Series (30min)');
