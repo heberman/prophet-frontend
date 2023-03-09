@@ -26,6 +26,8 @@ const StockPage = (props) => {
     const [dataState, setDataState] = useState(0);
     const [avgPrice, setAvgPrice] = useState("");
 
+    console.log(portfolio);
+
     useEffect(() => {
         if (trades && portfolio) {
             console.log(trades, portfolio);
