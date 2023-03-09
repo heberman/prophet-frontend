@@ -145,7 +145,7 @@ const StockPage = (props) => {
                             <h3><u>{"Trade " + ticker}</u></h3>
                             <p>
                                 <b>{"Cash: " + formatPrice(cash)}</b><br/>
-                                <b>{"Shares Owned: " + portfolio[ticker]}</b><br/>
+                                <b>{"Shares Owned: " + (portfolio[ticker] ? portfolio[ticker] : 0)}</b><br/>
                                 <b>{"Tradable: " + tradable}</b>
                             </p>
                             <form onSubmit={(e) => tradeShares(e, parseInt(sharesToBuy))}>
