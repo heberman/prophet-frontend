@@ -13,7 +13,7 @@ const PortfolioTable = (props) => {
                 <tr key={index}>
                     <td className="stock-link"><Link to={'/stock/' + ticker}>{ticker}</Link></td>
                     <td>{props.portfolioData[ticker] + " shares"}</td>
-                    <td>{funcs.formatPrice(priceMap.get(ticker))}</td>
+                    <td>{funcs.formatPrice(priceMap[ticker])}</td>
                 </tr>
             );
         });
