@@ -22,6 +22,7 @@ const useFetchUserData = (username) => {
         const fetchAll = async () => {
             try {
                 const response = await axios.get('/user/' + username);
+                if (!response.data.foundUser) throw Error("Fetch user error.");
                 return response.data;
             }
             catch (error){
@@ -34,7 +35,6 @@ const useFetchUserData = (username) => {
 
         fetchAll().then( result => {
             if (result) {
-                console.log(result);
                 setUserData(result.foundUser);
                 setTrades(result.foundUser.trades);
                 setCash(result.foundUser.cash);
