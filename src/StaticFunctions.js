@@ -1,6 +1,6 @@
 
 function formatPrice(val) {
-    return "$" + (Math.round(val * 100) / 100).toFixed(2);
+    return "$" + (Math.round(val * 100) / 100).toFixed(2).toLocaleString("en-US");
 }
 
 function convertShares(numShares) {
