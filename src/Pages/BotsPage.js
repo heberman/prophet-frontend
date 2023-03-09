@@ -1,7 +1,7 @@
 import TradesTable from '../TradesTable';
 import useFetchUserData from '../useFetchUserData';
 import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
-const funcs = require('../StaticFunctions');
+import { formatValueData } from '../StaticFunctions';
 
 const BotsPage = () => {
     const { userData, portVal, isPending, error } = useFetchUserData("randotron");

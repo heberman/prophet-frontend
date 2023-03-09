@@ -21,7 +21,7 @@ function getDaysAgo(days) {
     return daysAgo;
 }
 
-function formatValueData (valueData) {
+function formatValueData(valueData) {
     let data = []
     valueData.forEach(entry => {
         const newEntry = {
