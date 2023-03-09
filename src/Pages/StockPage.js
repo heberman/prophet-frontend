@@ -35,7 +35,7 @@ const StockPage = (props) => {
             console.log(newAvgPrice);
             setAvgPrice(formatPrice(newAvgPrice));
         }
-    }, [ticker, trades, shares]);
+    }, [ticker, trades, portfolio]);
 
 
     async function tradeShares(e, num_shares) {
