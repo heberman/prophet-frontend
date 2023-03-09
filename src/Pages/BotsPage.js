@@ -1,7 +1,7 @@
 import TradesTable from '../TradesTable';
 import useFetchUserData from '../useFetchUserData';
 import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
-import { formatValueData } from '../StaticFunctions';
+import { formatPrice, formatValueData } from '../StaticFunctions';
 
 const BotsPage = () => {
     const { userData, portVal, isPending, error } = useFetchUserData("randotron");
@@ -13,8 +13,8 @@ const BotsPage = () => {
             { userData && portVal !== null && 
             <div>
                 <h1>Randotron Stats</h1>
-                <b>{"Total Value: " + funcs.formatPrice(userData.cash + portVal)}</b><br />
-                <b>{"Net Profit: " + funcs.formatPrice(userData.cash + portVal - 10000.00)}</b>
+                <b>{"Total Value: " + formatPrice(userData.cash + portVal)}</b><br />
+                <b>{"Net Profit: " + formatPrice(userData.cash + portVal - 10000.00)}</b>
                 <LineChart width={730} height={320} data={formatValueData(userData.valueData)} 
                     margin={{ top: 0, right: 20, left: 0, bottom: 5 }}>
                     <XAxis tickMargin={10} minTickGap={30} dataKey="time"/>
