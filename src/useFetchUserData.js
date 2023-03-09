@@ -45,6 +45,7 @@ const useFetchUserData = (username) => {
                 setUserData(result.foundUser);
                 setTrades(result.foundUser.trades);
                 setCash(result.foundUser.cash);
+                setPorfolio(result.foundUser.portfolio);
                 setPortVal(result.portVal);
                 setPriceMap(result.priceMap);
                 setIsPending(false);
