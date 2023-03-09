@@ -25,7 +25,7 @@ export function formatValueData(valueData) {
     valueData.forEach(entry => {
         const newEntry = {
             time: new Date(entry.date).toLocaleString(),
-            Value: entry.totalValue 
+            Value: Math.round(entry.totalValue * 100) / 100
         }
         data = [newEntry, ...data];
     });
