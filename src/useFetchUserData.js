@@ -21,7 +21,7 @@ const useFetchUserData = (username) => {
 
     const updatePortfolio = (ticker, shares) => {
         let newPortfolio = portfolio;
-        newPortfolio[ticker] += shares;
+        newPortfolio[ticker] = newPortfolio[ticker] + shares;
         setPorfolio(newPortfolio);
     }
 
