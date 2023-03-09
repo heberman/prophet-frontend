@@ -39,6 +39,7 @@ const StockPage = (props) => {
 
 
     async function tradeShares(e, num_shares) {
+        console.log(num_shares);
         e.preventDefault();
         setSharesToBuy("");
         setSharesToSell("");
