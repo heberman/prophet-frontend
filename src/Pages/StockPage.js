@@ -31,7 +31,7 @@ const StockPage = (props) => {
             const filteredTrades = trades.filter(t => t.ticker === ticker && t.numShares > 0);
             console.log(portfolio[ticker]);
             //const sharesPurchased = filteredTrades.reduce((t1, t2) => t1.numShares + t2.numShares);
-            const newAvgPrice = filteredTrades.reduce((t1, t2) => {t1 + t2.price * t2.numShares}, 0) / portfolio[ticker];
+            const newAvgPrice = filteredTrades.reduce((total, t) => total + t.price * t.numShares, 0) / portfolio[ticker];
             console.log(newAvgPrice);
             setAvgPrice(formatPrice(newAvgPrice));
         }
