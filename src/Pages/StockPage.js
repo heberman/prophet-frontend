@@ -206,9 +206,9 @@ const StockPage = (props) => {
                         </div>
                     </div>
                 </div>
-                {trades.filter(t => t.ticker === ticker).length > 0 && 
-                <h3>{"Average Cost: " + avgPrice}</h3>}
                 <div className='ticker_history'>
+                    {trades.filter(t => t.ticker === ticker).length > 0 && 
+                    <h3>{"Average Cost: " + avgPrice}</h3>}
                     <h3><u>{ticker + " History"}</u></h3>
                     {trades.filter(t => t.ticker === ticker).length === 0 ? <b>No trades made.</b> : 
                         <table>

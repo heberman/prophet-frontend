@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <nav className="navbar">
             <div className="logo">
@@ -11,6 +11,7 @@ const Navbar = () => {
                 <Link to="/search">Search</Link>
                 <Link to="/stats">Stats</Link>
                 <Link to="/bots">Trading Bots</Link>
+                <Link onClick={() => props.setUser(null)} to="/">Logout</Link>
             </div>
         </nav>
     );

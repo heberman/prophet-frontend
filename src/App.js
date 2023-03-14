@@ -21,7 +21,7 @@ function App() {
         {user == null ? (<LoginHandler setUser={setUser}/>) : (
             <div>
               <Router>
-                <Navbar />
+                <Navbar setUser={setUser} />
                 <div className="content">
                   <Routes>
                     <Route path="/" element={ <Home user={user} /> } />
