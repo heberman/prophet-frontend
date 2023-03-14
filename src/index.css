@@ -146,6 +146,7 @@ th, td {
   justify-content: flex-start;
   padding: 1rem;
   background-color: rgba(0,0,0,0.4);
+  border-radius: 0.5rem;
 }
 
 .login-handler form {
