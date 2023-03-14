@@ -9,6 +9,7 @@ import Stats from './Pages/Stats';
 import StockPage from './Pages/StockPage';
 import LoginHandler from './LoginHandler';
 import BotsPage from './Pages/BotsPage';
+import AboutPage from './Pages/AboutPage';
 
 //alpha vantage api key:MG0ID5XPDBCTO9FF
 
@@ -25,6 +26,7 @@ function App() {
                 <div className="content">
                   <Routes>
                     <Route path="/" element={ <Home user={user} /> } />
+                    <Route path="/about" element={ <AboutPage /> } />
                     <Route path="/search" element={ <Search /> } />
                     <Route path="/stats" element={ <Stats user={user}/> } />
                     <Route path="/bots" element={ <BotsPage /> } />
