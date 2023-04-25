@@ -1,8 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { convertShares, formatPrice } from './StaticFunctions';
 
 const TradesTable = (props) => {
+
+    const [numTrades, setNumTrades] = useState(10);
+
     const TableHeader = () => {
         return (
             <thead>
@@ -18,7 +21,7 @@ const TradesTable = (props) => {
     
     const TableBody = () => {
 
-        const rows = props.tradesData.map((trade, index) => {
+        const rows = props.tradesData.slice(0, numTrades).map((trade, index) => {
             return (
                 <tr key={index}>
                     <td className="stock-link"><Link to={'/stock/' + trade.ticker}>{trade.ticker}</Link></td>
@@ -28,10 +31,23 @@ const TradesTable = (props) => {
                 </tr>
             );
         });
+
+        const handleShowMore = () => {
+            setNumRows(numRows + 10);
+        };
+        
+        const showMoreButton =
+            numRows < props.tradesData.length ? (
+              <button onClick={handleShowMore}>Show More</button>
+            ) : null;
+
         return (
-            <tbody>
-            {rows}
-            </tbody>
+            <div>
+            <table>
+                <tbody>{rows}</tbody>
+            </table>
+            {showMoreButton}
+            </div>
         );
     }
 
