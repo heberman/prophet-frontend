@@ -33,11 +33,11 @@ const TradesTable = (props) => {
         });
 
         const handleShowMore = () => {
-            setNumRows(numRows + 10);
+            setNumTrades(numRows + 10);
         };
         
         const showMoreButton =
-            numRows < props.tradesData.length ? (
+            numTrades < props.tradesData.length ? (
               <button onClick={handleShowMore}>Show More</button>
             ) : null;
 
