@@ -41,19 +41,25 @@ const TradesTable = (props) => {
         setNumTrades(numTrades + 10);
     };
     
-    const showMoreButton =
-        numTrades < props.tradesData.length ? (
-          <button className='normal-button' onClick={handleShowMore}>Show More</button>
-        ) : null;
+    const ShowMoreButton = () => {
+        return (
+            <div>
+                {numTrades < props.tradesData.length ? (
+                    <button className='normal-button' onClick={handleShowMore}>Show More</button>
+                ) : null}
+            </div>);
+    };
 
     return (
         <div>
             { (Object.keys(props.tradesData).length === 0) ? <b>No trades made.</b> :
+            <div>
             <table>
                 <TableHeader />
                 <TableBody />
-                {showMoreButton}
-            </table>} 
+            </table>
+            <ShowMoreButton />
+            </div>}
         </div>
     );
 }
