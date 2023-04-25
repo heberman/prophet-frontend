@@ -32,24 +32,19 @@ const TradesTable = (props) => {
             );
         });
 
-        const handleShowMore = () => {
-            setNumTrades(numTrades + 10);
-        };
-        
-        const showMoreButton =
-            numTrades < props.tradesData.length ? (
-              <button onClick={handleShowMore}>Show More</button>
-            ) : null;
-
         return (
-            <div>
-            <table>
-                <tbody>{rows}</tbody>
-            </table>
-            {showMoreButton}
-            </div>
+            <tbody>{rows}</tbody>
         );
     }
+
+    const handleShowMore = () => {
+        setNumTrades(numTrades + 10);
+    };
+    
+    const showMoreButton =
+        numTrades < props.tradesData.length ? (
+          <button className='normal-button' onClick={handleShowMore}>Show More</button>
+        ) : null;
 
     return (
         <div>
@@ -57,6 +52,7 @@ const TradesTable = (props) => {
             <table>
                 <TableHeader />
                 <TableBody />
+                {showMoreButton}
             </table>} 
         </div>
     );
