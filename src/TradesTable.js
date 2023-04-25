@@ -33,7 +33,7 @@ const TradesTable = (props) => {
         });
 
         const handleShowMore = () => {
-            setNumTrades(numRows + 10);
+            setNumTrades(numTrades + 10);
         };
         
         const showMoreButton =
