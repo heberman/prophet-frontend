@@ -31,3 +31,24 @@ export function formatValueData(valueData) {
     });
     return data;
 }
+
+function filterPortvals(list, n, size) {
+    const result = [];
+    for (let i = 0; i < list.length && result.length < size; i += n) {
+        result.push(list[i]);
+    }
+    return result;
+}
+
+export function getStatData(tradesData, chart_index) {
+    if (chart_index == 1) {
+        return filterPortvals(tradesData, 6, 7 * 6 * 16);
+    } else if (chart_index == 2) {
+        return filterPortvals(tradesData, 6 * 4, 30 * 6 * 16);
+    } else if (chart_index == 3) {
+        return filterPortvals(tradesData, 6 * 9, 90 * 6 * 16);
+    } else if (chart_index == 4) {
+        return filterPortvals(tradesData, 6 * 24, 365 * 6 * 16);
+    }
+    return filterPortvals(tradesData, 0, 6 * 16);
+}
