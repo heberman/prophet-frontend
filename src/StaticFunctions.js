@@ -41,13 +41,13 @@ function filterPortvals(list, n, size) {
 }
 
 export function getStatData(tradesData, chart_index) {
-    if (chart_index == 1) {
+    if (chart_index === 1) {
         return filterPortvals(tradesData, 6, 7 * 6 * 16);
-    } else if (chart_index == 2) {
+    } else if (chart_index === 2) {
         return filterPortvals(tradesData, 6 * 4, 30 * 6 * 16);
-    } else if (chart_index == 3) {
+    } else if (chart_index === 3) {
         return filterPortvals(tradesData, 6 * 9, 90 * 6 * 16);
-    } else if (chart_index == 4) {
+    } else if (chart_index === 4) {
         return filterPortvals(tradesData, 6 * 24, 365 * 6 * 16);
     }
     return filterPortvals(tradesData, 0, 6 * 16);
