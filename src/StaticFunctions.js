@@ -50,5 +50,5 @@ export function getStatData(tradesData, chart_index) {
     } else if (chart_index === 4) {
         return filterPortvals(tradesData, 6 * 24, 365 * 6 * 16);
     }
-    return filterPortvals(tradesData, 0, 6 * 16);
+    return filterPortvals(tradesData, 1, 6 * 16);
 }
