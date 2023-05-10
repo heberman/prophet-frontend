@@ -9,17 +9,17 @@ const Stats = (props) => {
 
     const [dataState, setDataState] = useState(0);
 
-    const { userData, trades, portVal, isPending, error } = useFetchUserData(username);
+    const { userData, portVal, isPending, error } = useFetchUserData(username);
     
     return (
         <div className="stats">
             { error && <div>{ error }</div>}
             { isPending && <div>Loading...</div>}
-            { userData && portVal && trades !== null && 
+            { userData && portVal !== null && 
             <div>
                 <h2>{"Total Value: " + formatPrice(userData.cash + portVal)}</h2>
                 <h2>{"Net Profit: " + formatPrice(userData.cash + portVal - 10000.00)}</h2>
-                <LineChart width={730} height={320} data={formatValueData(getStatData(trades, dataState))} 
+                <LineChart width={730} height={320} data={formatValueData(getStatData(userData.valueData, dataState))} 
                     margin={{ top: 0, right: 20, left: 0, bottom: 5 }}>
                     <XAxis tickMargin={10} minTickGap={30} dataKey="time"/>
                     <YAxis tick={false} type="number" domain={([dataMin, dataMax]) => {
