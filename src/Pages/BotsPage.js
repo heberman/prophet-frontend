@@ -7,7 +7,7 @@ import { useState } from 'react';
 const BotsPage = () => {
     const [dataState, setDataState] = useState(0);
 
-    const { userData, portVal, isPending, error } = useFetchUserData("randotron");
+    const { userData, trades, portVal, isPending, error } = useFetchUserData("randotron");
     
     return (
         <div className="stats">
@@ -18,7 +18,7 @@ const BotsPage = () => {
                 <h1>Randotron Stats</h1>
                 <b>{"Total Value: " + formatPrice(userData.cash + portVal)}</b><br />
                 <b>{"Net Profit: " + formatPrice(userData.cash + portVal - 10000.00)}</b>
-                <LineChart width={730} height={320} data={formatValueData(getStatData(userData.tradesData, dataState))} 
+                <LineChart width={730} height={320} data={formatValueData(getStatData(trades, dataState))} 
                     margin={{ top: 0, right: 20, left: 0, bottom: 5 }}>
                     <XAxis tickMargin={10} minTickGap={30} dataKey="time"/>
                     <YAxis tick={false} type="number" domain={([dataMin, dataMax]) => {

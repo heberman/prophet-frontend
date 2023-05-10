@@ -41,7 +41,6 @@ function filterPortvals(list, n, size) {
 }
 
 export function getStatData(tradesData, chart_index) {
-    console.log(tradesData);
     if (chart_index === 1) {
         return filterPortvals(tradesData, 6, 7 * 6 * 16);
     } else if (chart_index === 2) {
