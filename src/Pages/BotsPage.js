@@ -27,7 +27,7 @@ const BotsPage = () => {
             { algState === 1 && randoPending && <div>Loading...</div>}
             { algState === 0 && prophData && prophPortVal !== null && 
             <div>
-                <h1>Randotron Stats</h1>
+                <h1>Prophetron Stats</h1>
                 <b>{"Total Value: " + formatPrice(prophData.cash + prophPortVal)}</b><br />
                 <b>{"Net Profit: " + formatPrice(prophData.cash + prophPortVal - 10000.00)}</b>
                 <LineChart width={730} height={320} data={formatValueData(getStatData(prophData.valueData, dataState))} 
