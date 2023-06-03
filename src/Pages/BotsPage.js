@@ -21,11 +21,11 @@ const BotsPage = () => {
                 <option value="0">Prophetron</option>
                 <option value="1">Randotron</option>
             </select>
-            { algState == 0 && prophError && <div>{ prophError }</div>}
-            { algState == 1 && randoError && <div>{ randoError }</div>}
-            { algState == 0 && prophPending && <div>Loading...</div>}
-            { algState == 1 && randoPending && <div>Loading...</div>}
-            { algState == 0 && prophData && prophPortVal !== null && 
+            { algState === 0 && prophError && <div>{ prophError }</div>}
+            { algState === 1 && randoError && <div>{ randoError }</div>}
+            { algState === 0 && prophPending && <div>Loading...</div>}
+            { algState === 1 && randoPending && <div>Loading...</div>}
+            { algState === 0 && prophData && prophPortVal !== null && 
             <div>
                 <h1>Randotron Stats</h1>
                 <b>{"Total Value: " + formatPrice(prophData.cash + prophPortVal)}</b><br />
@@ -50,7 +50,7 @@ const BotsPage = () => {
                 <h3>History</h3>
                 <TradesTable tradesData={prophData.trades} />
             </div>}
-            { algState == 1 && randoData && randoPortVal !== null && 
+            { algState === 1 && randoData && randoPortVal !== null && 
             <div>
                 <h1>Randotron Stats</h1>
                 <b>{"Total Value: " + formatPrice(randoData.cash + randoPortVal)}</b><br />
