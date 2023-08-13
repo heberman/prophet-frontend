@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'https://thankful-elk-windbreaker.cyclic.app'
+    baseURL: 'https://crabby-battledress-deer.cyclic.app/'
 });
