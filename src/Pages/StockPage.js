@@ -43,21 +43,10 @@ const StockPage = (props) => {
         if (num_shares === 0)
             return false;
         try {
-            let newUser = userData;
             const trade = { ticker, numShares: num_shares, date: Date(), price: currPrice }
-            newUser.trades = [trade, ...newUser.trades];
-            if (newUser.portfolio[ticker]) {
-                newUser.portfolio[ticker] += num_shares;
-                if (newUser.portfolio[ticker] <= 0) {
-                    delete newUser.portfolio[ticker];
-                }
-            } else {
-                newUser.portfolio[ticker] = num_shares;
-            }
-            newUser.cash -= num_shares * currPrice;
-            const response = await axios.put('/user/' + userData.user, newUser);
-            updateTrades(newUser.trades);
-            updateCash(newUser.cash);
+            const response = await axios.put('/user/' + userData.user, { userData, trade });
+            updateTrades([trade, ...userData.trades]);
+            updateCash(userData.cash - num_shares * currPrice);
             return response;
         }
         catch (error) {
