@@ -13,7 +13,7 @@ const StockPage = (props) => {
 
     const username = props.user.user;
 
-    const { userData, portfolio, cash, updateCash, trades, updateTrades, isPending: userPending, error: userError } = useFetchUserData(username);
+    const { userData, portfolio, updatePortfolio, cash, updateCash, trades, updateTrades, isPending: userPending, error: userError } = useFetchUserData(username);
     const { data: fiveMinuteData, isPending: stockIsPending, error: stockError } = 
         useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '5min', 'full', 'Time Series (5min)');
     const { data: thirtyMinuteData } = useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '30min', 'full', 'Time Series (30min)');
@@ -45,6 +45,7 @@ const StockPage = (props) => {
         try {
             const trade = { ticker, numShares: num_shares, date: Date(), price: currPrice }
             const response = await axios.put('/user/' + userData.user, { userData, trade });
+            updatePortfolio(ticker, num_shares);
             updateTrades([trade, ...userData.trades]);
             updateCash(userData.cash - num_shares * currPrice);
             return response;
