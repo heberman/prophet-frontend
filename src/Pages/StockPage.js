@@ -45,7 +45,7 @@ const StockPage = (props) => {
         try {
             const trade = { ticker, numShares: num_shares, date: Date(), price: currPrice }
             const response = await axios.put('/user/' + userData.user, { userData, trade });
-            if (response.data.status == "success") {
+            if (response.data.status === "success") {
                 updateUser(response.data.newUser);
                 return response;
             } else {
