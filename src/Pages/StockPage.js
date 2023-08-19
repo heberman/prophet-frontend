@@ -13,7 +13,7 @@ const StockPage = (props) => {
 
     const username = props.user.user;
 
-    const { userData, portfolio, updatePortfolio, cash, updateCash, trades, updateTrades, isPending: userPending, error: userError } = useFetchUserData(username);
+    const { userData, updateUser, isPending: userPending, error: userError } = useFetchUserData(username);
     const { data: fiveMinuteData, isPending: stockIsPending, error: stockError } = 
         useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '5min', 'full', 'Time Series (5min)');
     const { data: thirtyMinuteData } = useFetchStockData(ticker, 'TIME_SERIES_INTRADAY', '30min', 'full', 'Time Series (30min)');
@@ -45,10 +45,13 @@ const StockPage = (props) => {
         try {
             const trade = { ticker, numShares: num_shares, date: Date(), price: currPrice }
             const response = await axios.put('/user/' + userData.user, { userData, trade });
-            updatePortfolio(ticker, num_shares);
-            updateTrades([trade, ...userData.trades]);
-            updateCash(userData.cash - num_shares * currPrice);
-            return response;
+            if (response.status == "success") {
+                updateUser(response.newUser);
+                return response;
+            } else {
+                throw Error(response.status);
+            }
+    
         }
         catch (error) {
             console.log(error);
@@ -134,8 +137,8 @@ const StockPage = (props) => {
                         <div className='sidebar'>
                             <h3><u>{"Trade " + ticker}</u></h3>
                             <p>
-                                <b>{"Cash: " + formatPrice(cash)}</b><br/>
-                                <b>{"Shares Owned: " + (portfolio[ticker] ? portfolio[ticker] : 0)}</b><br/>
+                                <b>{"Cash: " + formatPrice(userData.cash)}</b><br/>
+                                <b>{"Shares Owned: " + (userData.portfolio[ticker] ? userData.portfolio[ticker] : 0)}</b><br/>
                                 <b>{"Tradable: " + tradable}</b>
                             </p>
                             <form onSubmit={(e) => tradeShares(e, parseInt(sharesToBuy))}>
@@ -169,7 +172,7 @@ const StockPage = (props) => {
                                 <button 
                                     className="normal-button"
                                     type="submit"
-                                    disabled={ !tradable || sharesToSell === '' || portfolio[ticker] <= 0 || portfolio[ticker] < parseInt(sharesToSell) }>
+                                    disabled={ !tradable || sharesToSell === '' || userData.portfolio[ticker] <= 0 || userData.portfolio[ticker] < parseInt(sharesToSell) }>
                                     Sell
                                 </button>
                             </form>
@@ -197,10 +200,10 @@ const StockPage = (props) => {
                     </div>
                 </div>
                 <div className='ticker_history'>
-                    {trades.filter(t => t.ticker === ticker).length > 0 && 
+                    {userData.trades.filter(t => t.ticker === ticker).length > 0 && 
                     <h3>{"Average Cost: " + avgPrice}</h3>}
                     <h3><u>{ticker + " History"}</u></h3>
-                    {trades.filter(t => t.ticker === ticker).length === 0 ? <b>No trades made.</b> : 
+                    {userData.trades.filter(t => t.ticker === ticker).length === 0 ? <b>No trades made.</b> : 
                         <table>
                             <thead>
                                 <tr>
@@ -211,7 +214,7 @@ const StockPage = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {trades.filter(t => t.ticker === ticker).map((trade, index) => {
+                                {userData.trades.filter(t => t.ticker === ticker).map((trade, index) => {
                                     return (
                                         <tr key={index}>
                                             <td>{trade.ticker}</td>

@@ -11,21 +11,8 @@ const useFetchUserData = (username) => {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
-    const updateTrades = (newTrades) => {
-        setTrades(newTrades);
-    }
-
-    const updateCash = (newCash) => {
-        setCash(newCash);
-    }
-
-    const updatePortfolio = (ticker, shares) => {
-        let newPortfolio = portfolio;
-        if (newPortfolio[ticker])
-            newPortfolio[ticker] += shares;
-        else
-            newPortfolio[ticker] = shares;
-        setPorfolio(newPortfolio);
+    const updateUser = (newUser) => {
+        setUserData(newUser);
     }
 
     useEffect(() => {
@@ -56,7 +43,7 @@ const useFetchUserData = (username) => {
         });
     }, [username]);
 
-    return { userData, priceMap, portVal, portfolio, updatePortfolio, cash, updateCash, trades, updateTrades, isPending, error };
+    return { userData, updateUser, priceMap, portVal, portfolio, cash, trades, isPending, error };
 }
  
 export default useFetchUserData;
